@@ -4,23 +4,24 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductsTagsTable extends Migration
+class CreateImagesTable extends Migration
 {
     public function up()
     {
-        Schema::create('products_tags', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
-            $table->integer('tag_id');
+            $table->unsignedBigInteger('product_id');
+            $table->integer('sequence');
+            $table->string('name');
+            $table->string('alt');
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('tag_id')->references('id')->on('tags');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('products_tags');
+        Schema::dropIfExists('images');
     }
 }

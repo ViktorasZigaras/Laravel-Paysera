@@ -10,7 +10,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('customer_id');
+            $table->unsignedBigInteger('customer_id');
             $table->integer('sum');
             $table->string('status');
             $table->timestamps();

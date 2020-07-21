@@ -4,11 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIngridientsTable extends Migration
+class CreateIngriedentsTable extends Migration
 {
     public function up()
     {
-        Schema::create('ingridients', function (Blueprint $table) {
+        Schema::create('ingriedents', function (Blueprint $table) {
             $table->id();
             $table->string('name', 64);
             $table->string('type', 32);
@@ -18,6 +18,6 @@ class CreateIngridientsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('ingridients');
+        Schema::dropIfExists('ingriedents');
     }
 }
