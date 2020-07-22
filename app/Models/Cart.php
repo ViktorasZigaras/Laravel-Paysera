@@ -9,17 +9,17 @@ use App\Models\CartProduct;
 
 class Cart extends Model
 {
-    protected $fillable = array('order_id');
+    protected $fillable = ['order_id'];
 
-    public function cartOrder() {
+    public function order() {
         return $this->belongsTo(Order::class, 'order_id', 'id');
     }
 
-    public function cartCartIngriedents() {
+    public function ingriedents() {
         return $this->hasMany(CartIngriedent::class, 'cart_id', 'id');
     }
 
-    public function cartCartProducts() {
+    public function products() {
         return $this->hasMany(CartProduct::class, 'cart_id', 'id');
     }
 }

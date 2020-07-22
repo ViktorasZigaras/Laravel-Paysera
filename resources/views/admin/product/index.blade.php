@@ -15,9 +15,9 @@
                         </form>
                         <br>
                         @foreach ($product->productImages as $image)
-                            {{$image}}
-                            
+                            <img src="{{asset('images/products/' . $image->name)}}" alt="{{$image->alt}}" style="width: 250px; height: 200px;">
                         @endforeach
+                        <br><br>
                     @endforeach
                 </div>
             </div>

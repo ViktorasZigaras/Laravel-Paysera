@@ -10,7 +10,13 @@ use App\Models\ProductTag;
 
 class Product extends Model
 {
-    protected $fillable = array('title', 'price', 'sale', 'description');
+    protected $fillable = ['title', 'price', 'sale', 'description'];
+
+    protected $attributes = [
+        'price'       => 0,
+        'sale'        => 'no',
+        'description' => 'none',
+    ];
 
     public function productImages() {
         return $this->hasMany(Image::class, 'product_id', 'id');

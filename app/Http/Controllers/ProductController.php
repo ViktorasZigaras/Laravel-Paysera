@@ -21,60 +21,43 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        // $validator = Validator::make($request->all(),
-        // [
-        //     'name' => ['required', 'min:3', 'max:64'],
-        //     'surname' => ['required', 'min:3', 'max:64'],
-        // ]
-        // );
-        // if ($validator->fails()) {
-        //     $request->flash();
-        //     return redirect()->back()->withErrors($validator);
-        // }
-        // $author = Author::create($request->all());
-        // $author->save();
-        // return redirect()->route('author.index')->with('success_message', '<Author Created>');
-
-        $product = new Product;
-        $product->title = $request->title;
-        $product->price = 0;
-        $product->sale = 'no';
-        $product->description = 'none';
+        $product = Product::create(['title' => $request->title]);
         $product->save();
 
-        foreach ($request->file('image') as $file) {
+        foreach ($request->file('image', []) as $file) {
             $name = $file->getClientOriginalName();
             $destinationPath = public_path('/images/products');
             $file->move($destinationPath, $name);
 
             $image = new Image;
-            $image->name = $request->title;
+            $image->name = $name;
             $image->product_id = $product->id;
             $image->sequence = 0;
-            $image->alt = '';
+            $image->alt = 'This is ' . $request->title;
             $image->save();
         }
 
         return redirect()->route('product.index')->with('success_message', 'Product created.');
     }
 
-    public function show(/*Book $book*/)
+    public function show(/*Product $product*/)
     {
         return '';
     }
 
-    public function edit(/*Book $book*/)
+    public function edit(/*Product $product*/)
     {
         return '';
     }
 
-    public function update(Request $request/*, Book $book*/)
+    public function update(Request $request/*, Product $product*/)
     {
         return '';
     }
 
-    public function destroy(/*Book $book*/)
+    public function destroy(Product $product)
     {
-        return '';
+        $product->delete();
+        return redirect()->route('product.index')->with('success_message', 'Product deleted.');
     }
 }

@@ -8,13 +8,13 @@ use App\Models\Tag;
 
 class ProductTag extends Model
 {
-    protected $fillable = array('product_id', 'tag_id');
+    protected $fillable = ['product_id', 'tag_id'];
 
-    public function productTagProduct () {
+    public function product () {
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 
-    public function productTagCategory() {
+    public function category() {
         return $this->belongsTo(Tag::class, 'tag_id', 'id');
     }
 }

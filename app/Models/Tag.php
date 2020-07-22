@@ -7,9 +7,9 @@ use App\Models\ProductTag;
 
 class Tag extends Model
 {
-    protected $fillable = array('title', 'action');
+    protected $fillable = ['title', 'action'];
 
-    public function tagProductTags() {
+    public function tags() {
         return $this->hasMany(ProductTag::class, 'tag_id', 'id');
     }
 }

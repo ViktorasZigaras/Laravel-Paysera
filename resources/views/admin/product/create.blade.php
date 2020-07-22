@@ -17,19 +17,15 @@
 
                         <hr>
 
-                        <input type="file" name="image[]">
+                        <div id="product-image-inputs-area">
+                            <input type="file" name="image[]">
+                        </div>
 
-                        <br>
+                        <hr><br>
 
-                        <input type="file" name="image[]">
-
-                        <br>
-
-                        <!-- <div class="form-group">
-                            <label>Surname</label>
-                            <input type="text" name="surname" value="{{old('surname')}}" class="form-control">
-                            <small class="form-text text-muted">Author Surname</small>
-                        </div> -->
+                        <button id="add-product-image" type="button">Add Image</button>
+                        
+                        <hr><br>
 
                         @csrf
                         <button type="submit">ADD</button>

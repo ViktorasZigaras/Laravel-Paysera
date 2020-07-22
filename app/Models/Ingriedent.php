@@ -7,9 +7,9 @@ use App\Models\CartIngriedent;
 
 class Ingriedent extends Model
 {
-    protected $fillable = array('name', 'type');
+    protected $fillable = ['name', 'type'];
 
-    public function ingriedentCartIngriedents() {
+    public function ingriedents() {
         return $this->hasMany(CartIngriedent::class, 'ingriedent_id', 'id');
     }
 }

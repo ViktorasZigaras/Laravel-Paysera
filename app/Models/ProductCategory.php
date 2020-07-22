@@ -8,13 +8,13 @@ use App\Models\Category;
 
 class ProductCategory extends Model
 {
-    protected $fillable = array('product_id', 'category_id');
+    protected $fillable = ['product_id', 'category_id'];
 
-    public function productCategoryProduct () {
+    public function product () {
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 
-    public function productCategoryCategory() {
+    public function category() {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }

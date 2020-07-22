@@ -8,13 +8,13 @@ use App\Models\Ingriedent;
 
 class CartIngriedent extends Model
 {
-    protected $fillable = array('cart_id', 'ingriedent_id');
+    protected $fillable = ['cart_id', 'ingriedent_id'];
 
-    public function cartIngriedentCart () {
+    public function cart () {
         return $this->belongsTo(Cart::class, 'cart_id', 'id');
     }
 
-    public function cartIngriedentIngriedent() {
+    public function ingriedent() {
         return $this->belongsTo(Ingriedent::class, 'ingriedent_id', 'id');
     }
 }

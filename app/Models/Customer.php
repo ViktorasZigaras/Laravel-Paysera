@@ -7,9 +7,9 @@ use App\Models\Order;
 
 class Customer extends Model
 {
-    protected $fillable = array('name', 'surname', 'address', 'phone');
+    protected $fillable = ['name', 'surname', 'address', 'phone'];
 
-    public function customerOrders() {
+    public function orders() {
         return $this->hasMany(Order::class, 'customer_id', 'id');
     }
 }
