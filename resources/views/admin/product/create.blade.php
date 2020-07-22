@@ -7,19 +7,29 @@
             <div class="card">
                 <div class="card-header">Create Product</div>
                 <div class="card-body">
-                    <form method="POST" action="{{route('product.store')}}">
+                    <form method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
 
                         <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" name="name" value="{{old('name')}}" class="form-control">
-                            <small class="form-text text-muted">Author Name</small>
+                            <label>Title</label>
+                            <input type="text" name="title" value="{{old('title')}}" class="form-control">
+                            <small class="form-text text-muted">Product title</small>
                         </div>
 
-                        <div class="form-group">
+                        <hr>
+
+                        <input type="file" name="image[]">
+
+                        <br>
+
+                        <input type="file" name="image[]">
+
+                        <br>
+
+                        <!-- <div class="form-group">
                             <label>Surname</label>
                             <input type="text" name="surname" value="{{old('surname')}}" class="form-control">
                             <small class="form-text text-muted">Author Surname</small>
-                        </div>
+                        </div> -->
 
                         @csrf
                         <button type="submit">ADD</button>
