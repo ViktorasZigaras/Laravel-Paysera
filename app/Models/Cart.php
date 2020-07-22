@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Order;
 use App\Models\CartIngriedent;
+use App\Models\CartProduct;
 
 class Cart extends Model
 {
@@ -16,5 +17,9 @@ class Cart extends Model
 
     public function cartCartIngriedents() {
         return $this->hasMany(CartIngriedent::class, 'cart_id', 'id');
+    }
+
+    public function cartCartProducts() {
+        return $this->hasMany(CartProduct::class, 'cart_id', 'id');
     }
 }

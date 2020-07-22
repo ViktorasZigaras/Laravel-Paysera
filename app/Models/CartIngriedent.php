@@ -10,11 +10,11 @@ class CartIngriedent extends Model
 {
     protected $fillable = array('cart_id', 'ingriedent_id');
 
-    public function CartIngriedentCart () {
+    public function cartIngriedentCart () {
         return $this->belongsTo(Cart::class, 'cart_id', 'id');
     }
 
-    public function CartIngriedentIngriedent() {
+    public function cartIngriedentIngriedent() {
         return $this->belongsTo(Ingriedent::class, 'ingriedent_id', 'id');
     }
 }

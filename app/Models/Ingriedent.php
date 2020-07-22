@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\CartIngriedent;
 
 class Ingriedent extends Model
 {

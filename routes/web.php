@@ -10,12 +10,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 ###
 
-// Route::group(['prefix' => 'authors'], function() {
-//     Route::get('', 'AuthorController@index')->name('author.index');
-//     Route::get('create', 'AuthorController@create')->name('author.create');
-//     Route::post('store', 'AuthorController@store')->name('author.store');
-//     Route::get('edit/{author}', 'AuthorController@edit')->name('author.edit');
-//     Route::post('update/{author}', 'AuthorController@update')->name('author.update');
-//     Route::post('delete/{author}', 'AuthorController@destroy')->name('author.destroy');
-//     Route::get('show/{author}', 'AuthorController@show')->name('author.show');
-// });
+Route::group(['prefix' => 'admin/products'], function() {
+    Route::get('', 'ProductController@index')->name('product.index');
+    Route::get('create', 'ProductController@create')->name('product.create');
+    Route::post('store', 'ProductController@store')->name('product.store');
+    Route::get('edit/{product}', 'ProductController@edit')->name('product.edit');
+    Route::post('update/{product}', 'ProductController@update')->name('product.update');
+    Route::post('delete/{product}', 'ProductController@destroy')->name('product.destroy');
+    Route::get('show/{product}', 'ProductController@show')->name('product.show');
+});
