@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {return view('welcome');});
+// Route::get('/', function () {return view('welcome');});
 
 Auth::routes();
 
@@ -31,3 +31,8 @@ Route::group(['prefix' => 'admin/products'], function() {
     Route::post('delete/{product}', 'ProductController@destroy') ->name('product.destroy');
     Route::get ('show/{product}',   'ProductController@show')    ->name('product.show');
 });
+
+# hidden field, name="_method value="delete"
+
+Route::get('/', 'FrontController@home')->name('front.home');
+Route::post('/add', 'FrontController@add')->name('front.add');
