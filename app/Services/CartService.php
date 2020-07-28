@@ -50,4 +50,13 @@ class CartService
         }
         Session::put('cart', $cart);
     }
+
+    public function remove()
+    {
+        $cart = Session::get('cart', []);
+        if (isset($cart[$this->request->product_id])) {
+            unset($cart[$this->request->product_id]);
+        }
+        Session::put('cart', $cart);
+    }
 }

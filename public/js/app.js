@@ -37294,16 +37294,37 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // window
 
 var productPhotoInput = '<hr><br><input type="file" name="image[]"></input>';
 var addPhotoButton = document.querySelector('#add-product-image');
-console.log(addPhotoButton);
 var productPhotoInputsArea = document.querySelector('#product-image-inputs-area');
 
 if (addPhotoButton) {
-  addPhotoButton.addEventListener("click", function () {
+  addPhotoButton.addEventListener('click', function () {
     var input = document.createElement('span');
     input.innerHTML = productPhotoInput;
     productPhotoInputsArea.appendChild(input);
   });
-}
+} ///////
+
+
+document.querySelectorAll('.add-button').forEach(function (button) {
+  button.addEventListener('click', function () {
+    var form = button.closest('.form');
+    var route = form.querySelector('[name=route]').value;
+    var id = form.querySelector('[name=product_id]').value;
+    var count = form.querySelector('[name=count]').value;
+    axios.post(route, {
+      product_id: id,
+      count: count
+    }).then(function (response) {
+      var cart = document.querySelector('#cart-count');
+      cart.innerHTML = response.data.html;
+      console.log(response);
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  });
+}); // const input = document.createElement('span');
+// input.innerHTML = productPhotoInput;
+// productPhotoInputsArea.appendChild(input);
 
 /***/ }),
 

@@ -54,6 +54,7 @@
                             <a class="nav-link" href="">CART</a>
                             <div id="cart-count">
                                 @include('front.cart')
+                                <!-- @include('front.cart-svg') -->
                             </div>
                         </li>
                     </ul>

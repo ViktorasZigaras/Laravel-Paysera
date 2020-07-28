@@ -22,13 +22,37 @@ require('./bootstrap');
 const productPhotoInput = '<hr><br><input type="file" name="image[]"></input>';
 
 const addPhotoButton = document.querySelector('#add-product-image');
-console.log(addPhotoButton);
 const productPhotoInputsArea = document.querySelector('#product-image-inputs-area');
 
 if (addPhotoButton) {
-    addPhotoButton.addEventListener("click", () => {
+    addPhotoButton.addEventListener('click', () => {
         const input = document.createElement('span');
         input.innerHTML = productPhotoInput;
         productPhotoInputsArea.appendChild(input);
     });
 }
+
+///////
+
+document.querySelectorAll('.add-button').forEach( (button) => {
+    button.addEventListener('click', () => {
+        const form = button.closest('.form');
+        const route = form.querySelector('[name=route]').value;
+        const id = form.querySelector('[name=product_id]').value;
+        const count = form.querySelector('[name=count]').value;
+
+        axios.post(route, {
+            product_id: id,
+            count: count,
+        }).then( (response) => {  
+            const cart = document.querySelector('#cart-count');
+            cart.innerHTML = response.data.html;
+            console.log(response);
+        })
+        .catch( (error) => {console.log(error);} );
+    });
+});
+    
+        // const input = document.createElement('span');
+        // input.innerHTML = productPhotoInput;
+        // productPhotoInputsArea.appendChild(input);
