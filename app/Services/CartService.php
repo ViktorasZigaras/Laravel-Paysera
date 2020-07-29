@@ -12,8 +12,7 @@ class CartService
 
     public function getCart()
     {
-        print_r(Session::get('cart'));
-
+        // unset(Session::get('cart'));
         $cart = Session::get('cart', []);
         $count = 0;
         $total = 0;

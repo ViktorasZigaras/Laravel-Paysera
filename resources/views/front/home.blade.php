@@ -32,4 +32,12 @@
     </div>
 </div>
 
+<form action="{{ route('buy') }}" method="post">
+    NAME: <input type="text" name="name" value="">
+    EMAIL: <input type="text" name="email" value="">
+    PHONE: <input type="text" name="phone" value="">
+    @csrf
+    <button type="submit">BUY</button>
+</form>
+
 @endsection

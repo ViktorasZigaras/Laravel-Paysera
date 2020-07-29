@@ -34,7 +34,12 @@ Route::group(['prefix' => 'admin/products'], function() {
 
 # hidden field, name="_method value="delete"
 
-Route::get('/', 'FrontController@home')->name('front.home');
-Route::post('/add', 'FrontController@add')->name('front.add');
-Route::post('/add-JS', 'FrontController@addJS')->name('front.addJS');
-Route::post('remove', 'FrontController@remove')->name('front.remove');
+Route::get ('/',       'FrontController@home')   ->name('front.home');
+Route::post('/add',    'FrontController@add')    ->name('front.add');
+Route::post('/add-JS', 'FrontController@addJS')  ->name('front.addJS');
+Route::post('remove',  'FrontController@remove') ->name('front.remove');
+Route::post('buy',     'FrontController@buy')    ->name('buy');
+
+Route::get ('paysera/accept',   'FrontController@payseraAccept')    ->name('paysera.accept');
+Route::get ('paysera/cancel',   'FrontController@payseraCancel')    ->name('paysera.cancel');
+Route::post('paysera/callback', 'FrontController@payseraCallback') ->name('paysera.callback');

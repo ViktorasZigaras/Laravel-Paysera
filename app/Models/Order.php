@@ -8,7 +8,7 @@ use App\Models\Cart;
 
 class Order extends Model
 {
-    protected $fillable = ['customer_id', 'sum', 'status'];
+    protected $fillable = ['customer_id', 'price', 'status'];
 
     public function customer() {
         return $this->belongsTo(Customer::class, 'customer_id', 'id');

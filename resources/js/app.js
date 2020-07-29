@@ -30,14 +30,8 @@ document.querySelectorAll('.add-button').forEach( (button) => {
             product_id: id,
             count: count,
         }).then( (response) => {  
-            const cart = document.querySelector('#cart-count');
-            // cart.innerHTML = response.data.result.html;
-            console.log(response.data);
+            document.querySelector('#cart-count').innerHTML = response.data.html;
         })
         .catch( (error) => {console.log(error);} );
     });
 });
-    
-        // const input = document.createElement('span');
-        // input.innerHTML = productPhotoInput;
-        // productPhotoInputsArea.appendChild(input);

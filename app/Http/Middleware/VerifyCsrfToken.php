@@ -12,6 +12,6 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        'paysera/callback' # example of rare cases when sending callbacks using POST back to website
     ];
 }
