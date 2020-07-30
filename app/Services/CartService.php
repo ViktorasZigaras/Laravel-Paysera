@@ -58,4 +58,8 @@ class CartService
         }
         Session::put('cart', $cart);
     }
+
+    public function clearSession() {
+        Session::forget('cart');
+    }
 }

@@ -22,4 +22,13 @@ class Cart extends Model
     public function products() {
         return $this->hasMany(CartProduct::class, 'cart_id', 'id');
     }
+
+    public static function makeCart($cartProducts, Order $order) {
+        foreach ($cartProducts as $product) {
+            $orderCart = new self;
+            $orderCart->product_id = $product->id;
+            $orderCart->order_id = $order->id;
+            $orderCart->save();
+        }
+    }
 }

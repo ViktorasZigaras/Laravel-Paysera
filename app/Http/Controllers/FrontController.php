@@ -8,8 +8,7 @@ use Illuminate\Http\Request;
 // use Validator;
 // use Session;
 use App\Services\CartService;
-use App\Libs\WebToPay;
-use App\Libs\WebToPayException;
+use App\Services\PayseraService;
 
 class FrontController extends Controller
 {
@@ -37,46 +36,31 @@ class FrontController extends Controller
         return redirect()->back();
     }
 
-    public function buy(CartService $cart, Request $request)
+    public function buy(CartService $cart, PayseraService $paysera, Request $request)
     {
         # simplify this service call?
         $buyCart = $cart->getCart();
-        $order = new Order;
-        # use autofill
-        $order->customer_id = 1;
-        $order->customer_name = $request->name;
-        $order->customer_email = $request->email;
-        $order->customer_phone = $request->phone;
-        $order->price = $buyCart['total'];
-        $order->status = 1;
-        $order->save();
-
-        foreach ($buyCart['products'] as $product) {
-            $orderCart = new Cart;
-            $orderCart->product_id = $product->id;
-            $orderCart->order_id = $order->id;
-            $orderCart->save();
-        }
-
-        #####
-
-        try {         
-            return redirect(WebToPay::redirectToPayment([
-                'projectid'     => 181604,
-                'sign_password' => '0b32d6a87c09c32b3cd90dfd5ef5699f',
-                'orderid'       => 'orderNo-' . $order->id,
-                'amount'        => (int) $order->price * 100, # cents!
-                'currency'      => 'EUR',
-                'country'       => 'LT',
-                'accepturl'     => route('paysera.accept'),
-                'cancelurl'     => route('paysera.cancel'),
-                'callbackurl'   => route('paysera.callback'),
-                'test'          => 1,
-            ]));
-        } catch (WebToPayException $e) {
-            // handle exception
-        } 
+        $order = Order::makeOrder($request, $buyCart['total']);
+        $cart->clearSession();
+        Cart::makeCart($buyCart['products'], $order);
+        $paysera->buy($order);
         
         # no return because Paysera interrupts
+    }
+
+    public function payseraAccept(PayseraService $paysera) {
+
+        $paysera->allGood();
+
+        return 'Accept order ' . $orderId . ': ' . $amount . ' ' . $currency;
+        # alternatively use redirect to response page
+    }
+
+    public function payseraCancel() {
+        return 'Cancel';
+    }
+
+    public function payseraCallback() {
+        return 'Callback';
     }
 }

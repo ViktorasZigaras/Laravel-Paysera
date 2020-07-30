@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         
         App\Providers\CartServiceProvider::class,
+        App\Providers\PayseraServiceProvider::class,
 
     ],
 

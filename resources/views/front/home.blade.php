@@ -26,18 +26,18 @@
                         @endforeach
                         <br><br>
                     @endforeach
+
+                    <form action="{{ route('buy') }}" method="post">
+                        NAME: <input type="text" name="name" value=""><br>
+                        EMAIL: <input type="text" name="email" value=""><br>
+                        PHONE: <input type="text" name="phone" value=""><br>
+                        @csrf
+                        <button type="submit">BUY</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<form action="{{ route('buy') }}" method="post">
-    NAME: <input type="text" name="name" value="">
-    EMAIL: <input type="text" name="email" value="">
-    PHONE: <input type="text" name="phone" value="">
-    @csrf
-    <button type="submit">BUY</button>
-</form>
 
 @endsection
