@@ -43,16 +43,15 @@ class FrontController extends Controller
         $order = Order::makeOrder($request, $buyCart['total']);
         $cart->clearSession();
         Cart::makeCart($buyCart['products'], $order);
-        $paysera->buy($order);
+        return $paysera->buy($order);
+
+        return 'buying';
         
         # no return because Paysera interrupts
     }
 
     public function payseraAccept(PayseraService $paysera) {
-
-        $paysera->allGood();
-
-        return 'Accept order ' . $orderId . ': ' . $amount . ' ' . $currency;
+        return $paysera->allGood();
         # alternatively use redirect to response page
     }
 

@@ -22,6 +22,7 @@ class Order extends Model
     public static function makeOrder(Request $request, $price) {
         $order = new self;
         $order->fillOrder($request, $price);
+        return $order;
     }
 
     private function fillOrder(Request $request, $price) {

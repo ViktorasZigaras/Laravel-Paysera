@@ -10,10 +10,11 @@ class PayseraServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(PayseraService::class, function($app) {
-            $paysera = new PayseraService([
+            $config = [
                 'projectid'     => 181604,
                 'sign_password' => '0b32d6a87c09c32b3cd90dfd5ef5699f'
-            ]);
+            ];
+            $paysera = new PayseraService($config);
             return $paysera;
         });
     }

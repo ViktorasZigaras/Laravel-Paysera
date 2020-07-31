@@ -658,10 +658,10 @@ class WebToPay_RequestBuilder {
      * Returns specification of fields for request.
      *
      * Array structure:
-     *   name      â€“ request item name
-     *   maxlen    â€“ max allowed value for item
-     *   required  â€“ is this item is required
-     *   regexp    â€“ regexp to test item value
+     *   name      – request item name
+     *   maxlen    – max allowed value for item
+     *   required  – is this item is required
+     *   regexp    – regexp to test item value
      *
      * @return array
      */
@@ -947,9 +947,9 @@ class WebToPay_Util {
     public function parseHttpQuery($query) {
         $params = array();
         parse_str($query, $params);
-        if (get_magic_quotes_gpc()) {
-            $params = $this->stripSlashesRecursively($params);
-        }
+        // if (get_magic_quotes_gpc()) {
+        //     $params = $this->stripSlashesRecursively($params);
+        // }
         return $params;
     }
 

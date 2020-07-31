@@ -10,7 +10,7 @@ class PayseraService {
 
     private $config;
 
-    public function __constructor(array $config) {
+    public function __construct(array $config) {
         $this->config = $config;
     }
 
@@ -30,8 +30,10 @@ class PayseraService {
                 'test'          => 1,
             ]));
         } catch (WebToPayException $e) {
-            // handle exception
+            echo get_class($e) . ': ' . $e->getMessage();
         } 
+
+        // return 'paysera?';
         
         # no return because Paysera interrupts
     }
@@ -52,6 +54,7 @@ class PayseraService {
                 $order->status = 2;
                 $order->save();
             }
+            return 'Accept order ' . $orderId . ': ' . $amount/100 . ' ' . $currency;
         } catch (\Exception $e) {
             echo get_class($e) . ': ' . $e->getMessage();
         }
